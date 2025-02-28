@@ -24,9 +24,9 @@ bootstrap:
 {{- else if eq .Values.mode "recovery" -}}
 bootstrap:
   recovery:
-    {{- with .Values.recovery.pitrTarget.time }}
+    {{- with .Values.recovery.recoveryTarget }}
     recoveryTarget:
-      targetTime: {{ . }}
+      {{- toYaml . | nindent 6 }}
     {{- end }}
     {{- if eq .Values.recovery.method "backup" }}
     backup:
